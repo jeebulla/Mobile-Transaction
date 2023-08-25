@@ -4,20 +4,30 @@ const serviceFee = 6.98;
 const userPin = 1111;
 let isLoggedIn = true;
 let transaction, account, amount, confirmation, bankName, accessCode, affirm;
+const start = document.querySelector("#start");
 
-for (let i = 0; i < 3; i++) {
-  if (isLoggedIn) {
-    accessCode = prompt("Enter USSD Code here");
-    if (!accessCode || accessCode !== pinCode) {
-      isLoggedIn = true;
-      if (!accessCode) {
-        alert("Thank you for choosing Access Bank");
-        break;
+start.addEventListener("click", (e) => {
+  //Prevents page from refreshing
+  // e.preventDefault();
+  login();
+});
+function login() {
+  for (let i = 0; i < 4; i++) {
+    if (isLoggedIn) {
+      accessCode = prompt("Enter USSD Code here");
+      if (!accessCode || accessCode !== pinCode) {
+        isLoggedIn = true;
+        if (!accessCode) {
+          alert("Thank you for choosing Access Bank");
+          break;
+        }
+        alert(`
+        Dial *901# to perform a USSD transaction
+        You have ${3 - i} trails remaining`);
+      } else {
+        isLoggedIn = false;
+        transactionType();
       }
-      alert("Dial *901# to perform a USSD transaction");
-    } else {
-      isLoggedIn = false;
-      transactionType();
     }
   }
 }
