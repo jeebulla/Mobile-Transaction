@@ -23,7 +23,7 @@ function login() {
         }
         alert(`
         Dial *901# to perform a USSD transaction
-        You have ${3 - i} trails remaining`);
+        You have ${3 - i} trial remaining`);
       } else {
         isLoggedIn = false;
         transactionType();
